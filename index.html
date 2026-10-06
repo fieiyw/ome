@@ -32,7 +32,7 @@
       }
 
       .container {
-        max-width: 1280px;
+        max-width: 1400px;
         margin: 28px auto;
         padding: 24px;
       }
@@ -69,7 +69,7 @@
 
       .form-grid {
         display: grid;
-        grid-template-columns: repeat(6, minmax(150px, 1fr));
+        grid-template-columns: repeat(7, minmax(150px, 1fr));
         gap: 16px;
         align-items: end;
       }
@@ -240,6 +240,12 @@
         font-weight: 700;
       }
 
+      .image-link {
+        color: var(--primary-dark);
+        text-decoration: underline;
+        font-weight: 700;
+      }
+
       .footer {
         text-align: center;
         margin-top: 40px;
@@ -253,9 +259,9 @@
         color: var(--muted);
       }
 
-      @media (max-width: 1024px) {
+      @media (max-width: 1180px) {
         .form-grid {
-          grid-template-columns: repeat(3, minmax(150px, 1fr));
+          grid-template-columns: repeat(4, minmax(150px, 1fr));
         }
       }
 
@@ -336,6 +342,11 @@
           </div>
 
           <div class="field">
+            <label for="imageFile">Image</label>
+            <input id="imageFile" type="file" accept="image/*" />
+          </div>
+
+          <div class="field">
             <label for="date">Date</label>
             <input id="date" type="date" />
           </div>
@@ -359,13 +370,14 @@
                   <th>Quiz Name</th>
                   <th>Raw Score</th>
                   <th>Total Score</th>
+                  <th>Image</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody id="Math"></tbody>
             </table>
-            <div class="summary" id="Math-summary">Total: 0</div>
+            <div class="summary" id="Math-summary">Total Score Sum: 0</div>
             <div class="empty" id="Math-empty">No entries yet.</div>
           </div>
         </div>
@@ -382,13 +394,14 @@
                   <th>Quiz Name</th>
                   <th>Raw Score</th>
                   <th>Total Score</th>
+                  <th>Image</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody id="Business"></tbody>
             </table>
-            <div class="summary" id="Business-summary">Total: 0</div>
+            <div class="summary" id="Business-summary">Total Score Sum: 0</div>
             <div class="empty" id="Business-empty">No entries yet.</div>
           </div>
         </div>
@@ -405,13 +418,14 @@
                   <th>Quiz Name</th>
                   <th>Raw Score</th>
                   <th>Total Score</th>
+                  <th>Image</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody id="Research"></tbody>
             </table>
-            <div class="summary" id="Research-summary">Total: 0</div>
+            <div class="summary" id="Research-summary">Total Score Sum: 0</div>
             <div class="empty" id="Research-empty">No entries yet.</div>
           </div>
         </div>
@@ -428,13 +442,14 @@
                   <th>Quiz Name</th>
                   <th>Raw Score</th>
                   <th>Total Score</th>
+                  <th>Image</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody id="DataAnalytics"></tbody>
             </table>
-            <div class="summary" id="DataAnalytics-summary">Total: 0</div>
+            <div class="summary" id="DataAnalytics-summary">Total Score Sum: 0</div>
             <div class="empty" id="DataAnalytics-empty">No entries yet.</div>
           </div>
         </div>
@@ -452,6 +467,7 @@
       const quizInput = document.getElementById("quizName");
       const rawScoreInput = document.getElementById("rawScore");
       const totalScoreInput = document.getElementById("totalScore");
+      const imageInput = document.getElementById("imageFile");
       const dateInput = document.getElementById("date");
       const addBtn = document.getElementById("addBtn");
 
@@ -467,8 +483,8 @@
       function updateSummary(subject) {
         const entries = getEntries(subject);
         const summaryEl = document.getElementById(`${subject}-summary`);
-        const total = entries.reduce((sum, item) => sum + Number(item.rawScore || 0), 0);
-        summaryEl.textContent = `Total: ${total}`;
+        const total = entries.reduce((sum, item) => sum + Number(item.totalScore || 0), 0);
+        summaryEl.textContent = `Total Score Sum: ${total}`;
       }
 
       function renderSubject(subject) {
@@ -498,6 +514,19 @@
           const totalCell = document.createElement("td");
           totalCell.textContent = entry.totalScore;
 
+          const imageCell = document.createElement("td");
+          if (entry.imageUrl) {
+            const link = document.createElement("a");
+            link.href = entry.imageUrl;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.className = "image-link";
+            link.textContent = entry.imageName || "Open image";
+            imageCell.appendChild(link);
+          } else {
+            imageCell.textContent = "No image";
+          }
+
           const dateCell = document.createElement("td");
           dateCell.textContent = entry.date;
 
@@ -517,6 +546,7 @@
           row.appendChild(quizCell);
           row.appendChild(rawCell);
           row.appendChild(totalCell);
+          row.appendChild(imageCell);
           row.appendChild(dateCell);
           row.appendChild(actionCell);
 
@@ -555,14 +585,24 @@
           return;
         }
 
+        let imageUrl = "";
+        let imageName = "";
+
+        const file = imageInput.files[0];
+        if (file) {
+          imageName = file.name;
+          imageUrl = URL.createObjectURL(file);
+        }
+
         const entries = getEntries(subject);
-        entries.push({ quiz, rawScore: numericRaw, totalScore: numericTotal, date });
+        entries.push({ quiz, rawScore: numericRaw, totalScore: numericTotal, imageUrl, imageName, date });
         saveEntries(subject, entries);
 
         subjectInput.value = "";
         quizInput.value = "";
         rawScoreInput.value = "";
         totalScoreInput.value = "";
+        imageInput.value = "";
         dateInput.value = "";
 
         renderSubject(subject);
