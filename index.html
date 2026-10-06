@@ -26,7 +26,7 @@
 
       body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Times New Roman', Times, serif;
         background: var(--bg);
         color: var(--text);
       }
@@ -37,8 +37,22 @@
         padding: 24px;
       }
 
+      .title-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .title-image {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+      }
+
       .title {
-        margin: 0 0 18px;
+        margin: 0;
         font-size: 2.3rem;
         text-align: center;
         color: var(--text);
@@ -72,6 +86,7 @@
         margin-bottom: 7px;
         letter-spacing: 0.04em;
         text-transform: uppercase;
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       select,
@@ -82,7 +97,7 @@
         font-size: 15px;
         padding: 12px 14px;
         height: 46px;
-        font-family: inherit;
+        font-family: 'Times New Roman', Times, serif;
       }
 
       select,
@@ -216,6 +231,19 @@
         text-align: center;
       }
 
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--muted);
+      }
+
       @media (max-width: 920px) {
         .form-grid {
           grid-template-columns: 1fr 1fr;
@@ -230,12 +258,55 @@
         .form-grid {
           grid-template-columns: 1fr;
         }
+
+        .title-section {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .title {
+          font-size: 1.8rem;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1 class="title">Quiz Tracker</h1>
+      <div class="title-section">
+        <svg class="title-image" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Heart background -->
+          <path d="M100 180C40 140 20 110 20 80C20 50 40 30 60 30C75 30 90 40 100 50C110 40 125 30 140 30C160 30 180 50 180 80C180 110 160 140 100 180Z" fill="#d4a5d4" stroke="#2c2c2c" stroke-width="3"/>
+          
+          <!-- Face -->
+          <g>
+            <!-- Head circle -->
+            <circle cx="100" cy="85" r="50" fill="white" stroke="#2c2c2c" stroke-width="3"/>
+            
+            <!-- Ears -->
+            <circle cx="65" cy="50" r="12" fill="white" stroke="#2c2c2c" stroke-width="3"/>
+            <circle cx="135" cy="50" r="12" fill="white" stroke="#2c2c2c" stroke-width="3"/>
+            
+            <!-- Left eye -->
+            <ellipse cx="80" cy="75" rx="8" ry="12" fill="white" stroke="#2c2c2c" stroke-width="2.5"/>
+            <ellipse cx="80" cy="75" rx="4" ry="6" fill="#2c2c2c"/>
+            
+            <!-- Right eye -->
+            <ellipse cx="120" cy="75" rx="8" ry="12" fill="white" stroke="#2c2c2c" stroke-width="2.5"/>
+            <ellipse cx="120" cy="75" rx="4" ry="6" fill="#2c2c2c"/>
+            
+            <!-- Nose -->
+            <circle cx="100" cy="90" r="3" fill="#2c2c2c"/>
+            
+            <!-- Mouth -->
+            <path d="M85 105 Q100 115 115 105" stroke="#2c2c2c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            
+            <!-- Cheeks/blush -->
+            <circle cx="60" cy="95" r="8" fill="#f0c0d0" opacity="0.6"/>
+            <circle cx="140" cy="95" r="8" fill="#f0c0d0" opacity="0.6"/>
+          </g>
+        </svg>
+        <h1 class="title">Quiz Tracker</h1>
+      </div>
 
       <div class="top-box">
         <div class="form-grid">
@@ -355,6 +426,10 @@
             <div class="empty" id="DataAnalytics-empty">No entries yet.</div>
           </div>
         </div>
+      </div>
+
+      <div class="footer">
+        <h2>Made by Breanna! 💕</h2>
       </div>
     </div>
 
