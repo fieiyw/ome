@@ -6,18 +6,18 @@
     <title>Quiz Tracker</title>
     <style>
       :root {
-        --bg: #f5f7fb;
+        --bg: #fff3f7;
         --panel: #ffffff;
-        --soft: #eef3ff;
-        --primary: #2f6fed;
-        --primary-dark: #1f57c9;
-        --text: #1f2937;
-        --muted: #5f6c7b;
-        --border: #dfe6f1;
-        --danger: #e53935;
-        --danger-dark: #c62828;
-        --success: #2e7d32;
-        --shadow: 0 4px 14px rgba(17, 24, 39, 0.08);
+        --soft: #ffe6ef;
+        --primary: #f06292;
+        --primary-dark: #e91e63;
+        --text: #3c2b3c;
+        --muted: #6e5367;
+        --border: #f7d7e5;
+        --danger: #ef476f;
+        --danger-dark: #d7265d;
+        --header-soft: #ffe7f1;
+        --shadow: 0 4px 16px rgba(240, 98, 146, 0.12);
       }
 
       * {
@@ -78,7 +78,7 @@
       input,
       button {
         border-radius: 9px;
-        border: 1px solid #c9d4ea;
+        border: 1px solid #f3c7d8;
         font-size: 15px;
         padding: 12px 14px;
         height: 46px;
@@ -95,7 +95,7 @@
       select:focus,
       input:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
+        box-shadow: 0 0 0 3px rgba(240, 98, 146, 0.12);
       }
 
       button {
@@ -130,7 +130,7 @@
       }
 
       .sheet-header {
-        background: linear-gradient(135deg, #ecf3ff, #dfeeff);
+        background: linear-gradient(135deg, #ffe9f3, #ffd9ea);
         border-bottom: 1px solid var(--border);
         padding: 14px 18px;
         display: flex;
@@ -175,12 +175,12 @@
       td {
         text-align: left;
         padding: 12px 12px;
-        border-bottom: 1px solid #edf0f5;
+        border-bottom: 1px solid #f8e3ee;
         font-size: 14px;
       }
 
       th {
-        background: #f9fafc;
+        background: var(--header-soft);
         color: var(--muted);
         font-weight: 700;
       }
@@ -190,7 +190,7 @@
       }
 
       tbody tr:hover {
-        background: #f9fbff;
+        background: #fff5f9;
       }
 
       .delete-btn {
@@ -211,7 +211,7 @@
 
       .empty {
         padding: 18px 14px;
-        color: #7b8795;
+        color: #9a7386;
         font-style: italic;
         text-align: center;
       }
