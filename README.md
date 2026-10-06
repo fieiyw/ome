@@ -171,10 +171,10 @@
           <label for="subject">Subject</label>
           <select id="subject">
             <option value="">Choose subject</option>
-            <option>Math</option>
-            <option>Business</option>
-            <option>Research</option>
-            <option>Data Analytics</option>
+            <option value="Math">Math</option>
+            <option value="Business">Business</option>
+            <option value="Research">Research</option>
+            <option value="Data Analytics">Data Analytics</option>
           </select>
         </div>
 
