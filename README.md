@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz Tracker</title>
   <style>
     * {
@@ -149,11 +149,6 @@
       background: #dc2626;
     }
 
-    .empty {
-      color: #6b7280;
-      font-style: italic;
-    }
-
     @media (max-width: 900px) {
       .form-grid, .sheet-grid {
         grid-template-columns: 1fr;
@@ -174,7 +169,7 @@
             <option value="Math">Math</option>
             <option value="Business">Business</option>
             <option value="Research">Research</option>
-            <option value="Data Analytics">Data Analytics</option>
+            <option value="DataAnalytics">Data Analytics</option>
           </select>
         </div>
 
@@ -264,7 +259,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody id="Data Analytics"></tbody>
+          <tbody id="DataAnalytics"></tbody>
         </table>
       </div>
     </div>
@@ -289,7 +284,10 @@
       }
 
       const tbody = document.getElementById(subject);
-      if (!tbody) return;
+      if (!tbody) {
+        alert("Invalid subject selected.");
+        return;
+      }
 
       const row = document.createElement("tr");
 
