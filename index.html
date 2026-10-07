@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Tracker & IPON</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Chewy&family=Fredoka:wght@400;500;600;700&display=swap');
+
       :root {
         --bg: #fff3f7;
         --panel: #ffffff;
@@ -26,9 +28,27 @@
 
       body {
         margin: 0;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Baloo 2', 'Comic Sans MS', 'Trebuchet MS', cursive;
         background: var(--bg);
         color: var(--text);
+      }
+
+      .welcome-title,
+      .title,
+      .menu-button,
+      .start-button,
+      .back-button,
+      .ipon-form button,
+      .delete-btn,
+      .circle,
+      .field label,
+      button,
+      input,
+      select,
+      h1,
+      h2,
+      h3 {
+        font-family: 'Fredoka', 'Baloo 2', 'Comic Sans MS', cursive;
       }
 
       .container {
@@ -53,11 +73,13 @@
       }
 
       .welcome-title {
-        font-size: 3.5rem;
+        font-size: 4.2rem;
+        line-height: 1;
         text-align: center;
         color: var(--text);
         margin: 0;
         font-weight: 700;
+        letter-spacing: 0.02em;
       }
 
       .start-button-wrapper {
@@ -69,11 +91,11 @@
         color: white;
         border: none;
         padding: 18px 48px;
-        font-size: 1.5rem;
-        border-radius: 12px;
+        font-size: 2.1rem;
+        line-height: 1.1;
+        border-radius: 14px;
         cursor: pointer;
         font-weight: 700;
-        font-family: 'Times New Roman', Times, serif;
         box-shadow: var(--shadow);
         transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       }
@@ -113,7 +135,7 @@
         transform: translateX(-50%);
         margin-top: 16px;
         display: flex;
-        gap: 16px;
+        gap: 18px;
         animation: slideDownBubble 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         z-index: 10;
         flex-wrap: wrap;
@@ -122,25 +144,43 @@
 
       .menu-button {
         background: var(--panel);
-        border: 2px solid var(--primary);
+        border: 3px solid var(--primary);
         color: var(--primary);
-        padding: 14px 24px;
-        font-size: 1rem;
-        border-radius: 10px;
+        padding: 18px 18px 12px;
+        font-size: 1.1rem;
+        border-radius: 16px;
         cursor: pointer;
         font-weight: 700;
-        font-family: 'Times New Roman', Times, serif;
         transition: all 0.2s ease;
         white-space: nowrap;
-        min-width: 140px;
+        min-width: 170px;
         text-align: center;
+        box-shadow: 0 4px 12px rgba(240, 98, 146, 0.08);
       }
 
       .menu-button:hover {
         background: var(--primary);
         color: white;
-        transform: translateY(-3px) scale(1.03);
-        box-shadow: 0 6px 16px rgba(240, 98, 146, 0.2);
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 8px 20px rgba(240, 98, 146, 0.18);
+      }
+
+      .menu-button .label {
+        display: block;
+        line-height: 1.1;
+      }
+
+      .menu-button .label-small {
+        display: block;
+        font-size: 1.05rem;
+        margin-top: 2px;
+      }
+
+      .menu-button .icon {
+        display: block;
+        font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 4px;
       }
 
       .app-screen {
@@ -167,7 +207,7 @@
 
       .title {
         margin: 0;
-        font-size: 2.3rem;
+        font-size: 2.5rem;
         text-align: center;
         color: var(--text);
       }
@@ -180,11 +220,10 @@
         color: white;
         border: none;
         padding: 10px 16px;
-        border-radius: 8px;
+        border-radius: 10px;
         cursor: pointer;
         font-weight: 700;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 14px;
+        font-size: 1rem;
       }
 
       .back-button:hover {
@@ -219,7 +258,7 @@
         margin-bottom: 7px;
         letter-spacing: 0.04em;
         text-transform: uppercase;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Baloo 2', 'Comic Sans MS', cursive;
       }
 
       select,
@@ -230,7 +269,7 @@
         font-size: 15px;
         padding: 12px 14px;
         height: 46px;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Baloo 2', 'Comic Sans MS', cursive;
       }
 
       select,
@@ -413,7 +452,7 @@
         font-size: 15px;
         padding: 12px 14px;
         height: 46px;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Baloo 2', 'Comic Sans MS', cursive;
         background: #fff;
         color: var(--text);
         outline: none;
@@ -430,7 +469,7 @@
         font-size: 15px;
         padding: 12px 14px;
         height: 46px;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Baloo 2', 'Comic Sans MS', cursive;
         background: var(--primary);
         color: white;
         font-weight: 700;
@@ -594,7 +633,7 @@
         }
 
         .welcome-title {
-          font-size: 2.2rem;
+          font-size: 2.5rem;
         }
 
         .dropdown-menu {
@@ -614,8 +653,16 @@
       <div class="start-button-wrapper">
         <button class="start-button" id="startBtn">Press to Start</button>
         <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
-          <button class="menu-button" id="quizBtn">📚 Quiz Tracker</button>
-          <button class="menu-button" id="iponBtn">💰 IPON Savings</button>
+          <button class="menu-button" id="quizBtn">
+            <span class="icon">📚</span>
+            <span class="label">Quiz</span>
+            <span class="label-small">Tracker</span>
+          </button>
+          <button class="menu-button" id="iponBtn">
+            <span class="icon">💰</span>
+            <span class="label">IPON</span>
+            <span class="label-small">Savings</span>
+          </button>
         </div>
       </div>
     </div>
