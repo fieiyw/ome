@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz Tracker</title>
+    <title>Quiz Tracker & IPON</title>
     <style>
       :root {
         --bg: #fff3f7;
@@ -37,6 +37,106 @@
         padding: 24px;
       }
 
+      .welcome-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        gap: 40px;
+        animation: fadeIn 0.6s ease;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .welcome-title {
+        font-size: 3.5rem;
+        text-align: center;
+        color: var(--text);
+        margin: 0;
+        font-weight: 700;
+      }
+
+      .start-button-wrapper {
+        position: relative;
+      }
+
+      .start-button {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 18px 48px;
+        font-size: 1.5rem;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Times New Roman', Times, serif;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+      }
+
+      .start-button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(240, 98, 146, 0.2);
+      }
+
+      .start-button:active {
+        transform: translateY(-2px);
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 16px;
+        display: flex;
+        gap: 16px;
+        animation: slideDown 0.4s ease;
+        z-index: 10;
+      }
+
+      .menu-button {
+        background: var(--panel);
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        padding: 14px 28px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Times New Roman', Times, serif;
+        transition: all 0.2s ease;
+      }
+
+      .menu-button:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      .app-screen {
+        display: none;
+      }
+
+      .app-screen.active {
+        display: block;
+      }
+
       .title-section {
         display: flex;
         align-items: center;
@@ -56,6 +156,25 @@
         font-size: 2.3rem;
         text-align: center;
         color: var(--text);
+      }
+
+      .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: var(--danger);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14px;
+      }
+
+      .back-button:hover {
+        background: var(--danger-dark);
       }
 
       .top-box {
@@ -246,6 +365,162 @@
         font-weight: 700;
       }
 
+      .ipon-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .ipon-input-box {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 20px;
+      }
+
+      .ipon-input-box h3 {
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 1.2rem;
+        color: var(--text);
+      }
+
+      .ipon-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .ipon-form input {
+        border-radius: 9px;
+        border: 1px solid #f3c7d8;
+        font-size: 15px;
+        padding: 12px 14px;
+        height: 46px;
+        font-family: 'Times New Roman', Times, serif;
+        background: #fff;
+        color: var(--text);
+        outline: none;
+      }
+
+      .ipon-form input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(240, 98, 146, 0.12);
+      }
+
+      .ipon-form button {
+        border-radius: 9px;
+        border: none;
+        font-size: 15px;
+        padding: 12px 14px;
+        height: 46px;
+        font-family: 'Times New Roman', Times, serif;
+        background: var(--primary);
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .ipon-form button:hover {
+        background: var(--primary-dark);
+      }
+
+      .ipon-progress-box {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 20px;
+      }
+
+      .ipon-progress-box h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 1.2rem;
+        color: var(--text);
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 30px;
+        background: #ffe7f1;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        transition: width 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 12px;
+      }
+
+      .progress-text {
+        text-align: right;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .circles-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .peso-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .peso-label {
+        font-weight: 700;
+        color: var(--text);
+        min-width: 70px;
+        font-size: 14px;
+      }
+
+      .circles-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        flex: 1;
+      }
+
+      .circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: transparent;
+      }
+
+      .circle:hover {
+        transform: scale(1.1);
+      }
+
+      .circle.checked {
+        background: var(--primary);
+        color: white;
+      }
+
       .footer {
         text-align: center;
         margin-top: 40px;
@@ -273,6 +548,10 @@
         .sheet-grid {
           grid-template-columns: 1fr;
         }
+
+        .ipon-container {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (max-width: 620px) {
@@ -288,181 +567,279 @@
         .title {
           font-size: 1.8rem;
         }
+
+        .welcome-title {
+          font-size: 2.5rem;
+        }
+
+        .dropdown-menu {
+          flex-direction: column;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="title-section">
-        <svg class="title-image" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path d="M100 180C40 140 20 110 20 80C20 50 40 30 60 30C75 30 90 40 100 50C110 40 125 30 140 30C160 30 180 50 180 80C180 110 160 140 100 180Z" fill="#d4a5d4" stroke="#2c2c2c" stroke-width="3"/>
-          <g>
-            <circle cx="100" cy="85" r="50" fill="white" stroke="#2c2c2c" stroke-width="3"/>
-            <circle cx="65" cy="50" r="12" fill="white" stroke="#2c2c2c" stroke-width="3"/>
-            <circle cx="135" cy="50" r="12" fill="white" stroke="#2c2c2c" stroke-width="3"/>
-            <ellipse cx="80" cy="75" rx="8" ry="12" fill="white" stroke="#2c2c2c" stroke-width="2.5"/>
-            <ellipse cx="80" cy="75" rx="4" ry="6" fill="#2c2c2c"/>
-            <ellipse cx="120" cy="75" rx="8" ry="12" fill="white" stroke="#2c2c2c" stroke-width="2.5"/>
-            <ellipse cx="120" cy="75" rx="4" ry="6" fill="#2c2c2c"/>
-            <circle cx="100" cy="90" r="3" fill="#2c2c2c"/>
-            <path d="M85 105 Q100 115 115 105" stroke="#2c2c2c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <circle cx="60" cy="95" r="8" fill="#f0c0d0" opacity="0.6"/>
-            <circle cx="140" cy="95" r="8" fill="#f0c0d0" opacity="0.6"/>
-          </g>
-        </svg>
-        <h1 class="title">Quiz Tracker</h1>
-      </div>
-
-      <div class="top-box">
-        <div class="form-grid">
-          <div class="field">
-            <label for="subject">Subject</label>
-            <select id="subject">
-              <option value="">Choose subject</option>
-              <option value="Math">Math</option>
-              <option value="Business">Business</option>
-              <option value="Research">Research</option>
-              <option value="DataAnalytics">Data Analytics</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="quizName">Quiz Number / Name</label>
-            <input id="quizName" type="text" placeholder="Quiz 1 / Algebra" />
-          </div>
-
-          <div class="field">
-            <label for="rawScore">Raw Score</label>
-            <input id="rawScore" type="number" min="0" step="0.1" placeholder="18" />
-          </div>
-
-          <div class="field">
-            <label for="totalScore">Total Score</label>
-            <input id="totalScore" type="number" min="0" step="0.1" placeholder="20" />
-          </div>
-
-          <div class="field">
-            <label for="imageFile">Image</label>
-            <input id="imageFile" type="file" accept="image/*" />
-          </div>
-
-          <div class="field">
-            <label for="date">Date</label>
-            <input id="date" type="date" />
-          </div>
-
-          <div class="field">
-            <button id="addBtn">Add Entry</button>
-          </div>
+    <div class="welcome-screen" id="welcomeScreen">
+      <h1 class="welcome-title">Welcome Breanna! 👋</h1>
+      <div class="start-button-wrapper">
+        <button class="start-button" id="startBtn">Press to Start</button>
+        <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
+          <button class="menu-button" id="quizBtn">📚 Quiz Tracker</button>
+          <button class="menu-button" id="iponBtn">💰 IPON Savings</button>
         </div>
       </div>
+    </div>
 
-      <div class="sheet-grid">
-        <div class="sheet" data-subject="Math">
-          <div class="sheet-header">
-            <h2>Math</h2>
-            <span class="toggle">▼</span>
-          </div>
-          <div class="sheet-body">
-            <table>
-              <thead>
-                <tr>
-                  <th>Quiz Name</th>
-                  <th>Raw Score</th>
-                  <th>Total Score</th>
-                  <th>Image</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="Math"></tbody>
-            </table>
-            <div class="summary" id="Math-summary">Total Score Sum: 0</div>
-            <div class="empty" id="Math-empty">No entries yet.</div>
+    <div class="app-screen" id="quizScreen">
+      <button class="back-button" id="quizBackBtn">← Back</button>
+      <div class="container">
+        <div class="title-section">
+          <svg class="title-image" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 180C40 140 20 110 20 80C20 50 40 30 60 30C75 30 90 40 100 50C110 40 125 30 140 30C160 30 180 50 180 80C180 110 160 140 100 180Z" fill="#d4a5d4" stroke="#2c2c2c" stroke-width="2"/>
+            <g>
+              <circle cx="100" cy="85" r="50" fill="white" stroke="#2c2c2c" stroke-width="3"/>
+              <circle cx="65" cy="50" r="12" fill="white" stroke="#2c2c2c" stroke-width="3"/>
+              <circle cx="135" cy="50" r="12" fill="white" stroke="#2c2c2c" stroke-width="3"/>
+              <ellipse cx="80" cy="75" rx="8" ry="12" fill="white" stroke="#2c2c2c" stroke-width="2.5"/>
+              <ellipse cx="80" cy="75" rx="4" ry="6" fill="#2c2c2c"/>
+              <ellipse cx="120" cy="75" rx="8" ry="12" fill="white" stroke="#2c2c2c" stroke-width="2.5"/>
+              <ellipse cx="120" cy="75" rx="4" ry="6" fill="#2c2c2c"/>
+              <circle cx="100" cy="90" r="3" fill="#2c2c2c"/>
+              <path d="M85 105 Q100 115 115 105" stroke="#2c2c2c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <circle cx="60" cy="95" r="8" fill="#f0c0d0" opacity="0.6"/>
+              <circle cx="140" cy="95" r="8" fill="#f0c0d0" opacity="0.6"/>
+            </g>
+          </svg>
+          <h1 class="title">Quiz Tracker</h1>
+        </div>
+
+        <div class="top-box">
+          <div class="form-grid">
+            <div class="field">
+              <label for="subject">Subject</label>
+              <select id="subject">
+                <option value="">Choose subject</option>
+                <option value="Math">Math</option>
+                <option value="Business">Business</option>
+                <option value="Research">Research</option>
+                <option value="DataAnalytics">Data Analytics</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="quizName">Quiz Number / Name</label>
+              <input id="quizName" type="text" placeholder="Quiz 1 / Algebra" />
+            </div>
+
+            <div class="field">
+              <label for="rawScore">Raw Score</label>
+              <input id="rawScore" type="number" min="0" step="0.1" placeholder="18" />
+            </div>
+
+            <div class="field">
+              <label for="totalScore">Total Score</label>
+              <input id="totalScore" type="number" min="0" step="0.1" placeholder="20" />
+            </div>
+
+            <div class="field">
+              <label for="imageFile">Image</label>
+              <input id="imageFile" type="file" accept="image/*" />
+            </div>
+
+            <div class="field">
+              <label for="date">Date</label>
+              <input id="date" type="date" />
+            </div>
+
+            <div class="field">
+              <button id="addBtn">Add Entry</button>
+            </div>
           </div>
         </div>
 
-        <div class="sheet" data-subject="Business">
-          <div class="sheet-header">
-            <h2>Business</h2>
-            <span class="toggle">▼</span>
+        <div class="sheet-grid">
+          <div class="sheet" data-subject="Math">
+            <div class="sheet-header">
+              <h2>Math</h2>
+              <span class="toggle">▼</span>
+            </div>
+            <div class="sheet-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Quiz Name</th>
+                    <th>Raw Score</th>
+                    <th>Total Score</th>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="Math"></tbody>
+              </table>
+              <div class="summary" id="Math-summary">Total Score Sum: 0</div>
+              <div class="empty" id="Math-empty">No entries yet.</div>
+            </div>
           </div>
-          <div class="sheet-body">
-            <table>
-              <thead>
-                <tr>
-                  <th>Quiz Name</th>
-                  <th>Raw Score</th>
-                  <th>Total Score</th>
-                  <th>Image</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="Business"></tbody>
-            </table>
-            <div class="summary" id="Business-summary">Total Score Sum: 0</div>
-            <div class="empty" id="Business-empty">No entries yet.</div>
+
+          <div class="sheet" data-subject="Business">
+            <div class="sheet-header">
+              <h2>Business</h2>
+              <span class="toggle">▼</span>
+            </div>
+            <div class="sheet-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Quiz Name</th>
+                    <th>Raw Score</th>
+                    <th>Total Score</th>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="Business"></tbody>
+              </table>
+              <div class="summary" id="Business-summary">Total Score Sum: 0</div>
+              <div class="empty" id="Business-empty">No entries yet.</div>
+            </div>
+          </div>
+
+          <div class="sheet" data-subject="Research">
+            <div class="sheet-header">
+              <h2>Research</h2>
+              <span class="toggle">▼</span>
+            </div>
+            <div class="sheet-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Quiz Name</th>
+                    <th>Raw Score</th>
+                    <th>Total Score</th>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="Research"></tbody>
+              </table>
+              <div class="summary" id="Research-summary">Total Score Sum: 0</div>
+              <div class="empty" id="Research-empty">No entries yet.</div>
+            </div>
+          </div>
+
+          <div class="sheet" data-subject="DataAnalytics">
+            <div class="sheet-header">
+              <h2>Data Analytics</h2>
+              <span class="toggle">▼</span>
+            </div>
+            <div class="sheet-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Quiz Name</th>
+                    <th>Raw Score</th>
+                    <th>Total Score</th>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="DataAnalytics"></tbody>
+              </table>
+              <div class="summary" id="DataAnalytics-summary">Total Score Sum: 0</div>
+              <div class="empty" id="DataAnalytics-empty">No entries yet.</div>
+            </div>
           </div>
         </div>
 
-        <div class="sheet" data-subject="Research">
-          <div class="sheet-header">
-            <h2>Research</h2>
-            <span class="toggle">▼</span>
-          </div>
-          <div class="sheet-body">
-            <table>
-              <thead>
-                <tr>
-                  <th>Quiz Name</th>
-                  <th>Raw Score</th>
-                  <th>Total Score</th>
-                  <th>Image</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="Research"></tbody>
-            </table>
-            <div class="summary" id="Research-summary">Total Score Sum: 0</div>
-            <div class="empty" id="Research-empty">No entries yet.</div>
-          </div>
-        </div>
-
-        <div class="sheet" data-subject="DataAnalytics">
-          <div class="sheet-header">
-            <h2>Data Analytics</h2>
-            <span class="toggle">▼</span>
-          </div>
-          <div class="sheet-body">
-            <table>
-              <thead>
-                <tr>
-                  <th>Quiz Name</th>
-                  <th>Raw Score</th>
-                  <th>Total Score</th>
-                  <th>Image</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="DataAnalytics"></tbody>
-            </table>
-            <div class="summary" id="DataAnalytics-summary">Total Score Sum: 0</div>
-            <div class="empty" id="DataAnalytics-empty">No entries yet.</div>
-          </div>
+        <div class="footer">
+          <h2>Made by Breanna! 💕</h2>
         </div>
       </div>
+    </div>
 
-      <div class="footer">
-        <h2>Made by Breanna! 💕</h2>
+    <div class="app-screen" id="iponScreen">
+      <button class="back-button" id="iponBackBtn">← Back</button>
+      <div class="container">
+        <div class="title-section">
+          <h1 class="title">💰 IPON Savings Tracker</h1>
+        </div>
+
+        <div class="ipon-container">
+          <div class="ipon-input-box">
+            <h3>Add Savings</h3>
+            <div class="ipon-form">
+              <input id="iponAmount" type="number" placeholder="Enter amount saved" min="0" step="1" />
+              <button id="iponAddBtn">Add Savings</button>
+            </div>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted);">
+              <p style="margin: 0 0 8px;">💡 Tip: Enter your savings amount and watch the circles fill up!</p>
+              <p style="margin: 0;">Total Goal: ₱70,000</p>
+            </div>
+          </div>
+
+          <div class="ipon-progress-box">
+            <h3>Your Savings Progress</h3>
+            <div class="progress-text" id="progressText">₱0 / ₱70,000 (0%)</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill" style="width: 0%;">
+                <span id="progressPercent">0%</span>
+              </div>
+            </div>
+
+            <div class="circles-grid" id="circlesGrid"></div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <h2>Made by Breanna! 💕</h2>
+        </div>
       </div>
     </div>
 
     <script>
-      const subjects = ["Math", "Business", "Research", "DataAnalytics"];
+      const welcomeScreen = document.getElementById("welcomeScreen");
+      const startBtn = document.getElementById("startBtn");
+      const dropdownMenu = document.getElementById("dropdownMenu");
+      const quizBtn = document.getElementById("quizBtn");
+      const iponBtn = document.getElementById("iponBtn");
+      const quizScreen = document.getElementById("quizScreen");
+      const iponScreen = document.getElementById("iponScreen");
+      const quizBackBtn = document.getElementById("quizBackBtn");
+      const iponBackBtn = document.getElementById("iponBackBtn");
 
+      startBtn.addEventListener("click", () => {
+        dropdownMenu.style.display = "flex";
+      });
+
+      quizBtn.addEventListener("click", () => {
+        welcomeScreen.style.display = "none";
+        quizScreen.classList.add("active");
+        renderAllSubjects();
+      });
+
+      iponBtn.addEventListener("click", () => {
+        welcomeScreen.style.display = "none";
+        iponScreen.classList.add("active");
+        initializeIPON();
+      });
+
+      quizBackBtn.addEventListener("click", () => {
+        quizScreen.classList.remove("active");
+        dropdownMenu.style.display = "none";
+        welcomeScreen.style.display = "flex";
+      });
+
+      iponBackBtn.addEventListener("click", () => {
+        iponScreen.classList.remove("active");
+        dropdownMenu.style.display = "none";
+        welcomeScreen.style.display = "flex";
+      });
+
+      const subjects = ["Math", "Business", "Research", "DataAnalytics"];
       const subjectInput = document.getElementById("subject");
       const quizInput = document.getElementById("quizName");
       const rawScoreInput = document.getElementById("rawScore");
@@ -615,7 +992,139 @@
         });
       });
 
-      renderAllSubjects();
+      const pesoValues = [1000, 500, 100, 50, 20, 10, 5];
+      const maxGoal = 70000;
+      const circlesPerValue = {
+        1000: 30,
+        500: 20,
+        100: 50,
+        50: 40,
+        20: 50,
+        10: 50,
+        5: 100
+      };
+
+      function initializeIPON() {
+        const grid = document.getElementById("circlesGrid");
+        grid.innerHTML = "";
+
+        pesoValues.forEach((peso) => {
+          const row = document.createElement("div");
+          row.className = "peso-row";
+
+          const label = document.createElement("div");
+          label.className = "peso-label";
+          label.textContent = `₱${peso}`;
+
+          const container = document.createElement("div");
+          container.className = "circles-container";
+
+          const numCircles = circlesPerValue[peso];
+          const savedData = getSavedIPON();
+
+          for (let i = 0; i < numCircles; i++) {
+            const circle = document.createElement("div");
+            circle.className = "circle";
+            circle.dataset.peso = peso;
+            circle.dataset.index = i;
+
+            const circleId = `${peso}_${i}`;
+            if (savedData.checked.includes(circleId)) {
+              circle.classList.add("checked");
+            }
+
+            circle.addEventListener("click", () => toggleCircle(circle));
+            container.appendChild(circle);
+          }
+
+          row.appendChild(label);
+          row.appendChild(container);
+          grid.appendChild(row);
+        });
+
+        updateIPONProgress();
+      }
+
+      function toggleCircle(circle) {
+        const peso = circle.dataset.peso;
+        const index = circle.dataset.index;
+        const circleId = `${peso}_${index}`;
+
+        let data = getSavedIPON();
+
+        if (circle.classList.contains("checked")) {
+          circle.classList.remove("checked");
+          data.checked = data.checked.filter((id) => id !== circleId);
+        } else {
+          circle.classList.add("checked");
+          data.checked.push(circleId);
+        }
+
+        saveIPON(data);
+        updateIPONProgress();
+      }
+
+      function getSavedIPON() {
+        const data = localStorage.getItem("iponData");
+        return data ? JSON.parse(data) : { checked: [] };
+      }
+
+      function saveIPON(data) {
+        localStorage.setItem("iponData", JSON.stringify(data));
+      }
+
+      function updateIPONProgress() {
+        const data = getSavedIPON();
+        let totalSaved = 0;
+
+        data.checked.forEach((circleId) => {
+          const [peso] = circleId.split("_");
+          totalSaved += Number(peso);
+        });
+
+        const percentage = Math.min((totalSaved / maxGoal) * 100, 100);
+
+        document.getElementById("progressText").textContent = `₱${totalSaved.toLocaleString()} / ₱${maxGoal.toLocaleString()} (${Math.round(percentage)}%)`;
+        document.getElementById("progressFill").style.width = `${percentage}%`;
+        document.getElementById("progressPercent").textContent = `${Math.round(percentage)}%`;
+      }
+
+      const iponAddBtn = document.getElementById("iponAddBtn");
+      const iponAmount = document.getElementById("iponAmount");
+
+      iponAddBtn.addEventListener("click", () => {
+        const amount = Number(iponAmount.value);
+
+        if (!amount || amount <= 0) {
+          alert("Please enter a valid amount.");
+          return;
+        }
+
+        let remaining = amount;
+        const data = getSavedIPON();
+
+        for (const peso of pesoValues) {
+          if (remaining >= peso) {
+            const numToCheck = Math.floor(remaining / peso);
+            const numCircles = circlesPerValue[peso];
+
+            let checked = 0;
+            for (let i = 0; i < numCircles && checked < numToCheck; i++) {
+              const circleId = `${peso}_${i}`;
+              if (!data.checked.includes(circleId)) {
+                data.checked.push(circleId);
+                checked++;
+              }
+            }
+
+            remaining -= checked * peso;
+          }
+        }
+
+        saveIPON(data);
+        initializeIPON();
+        iponAmount.value = "";
+      });
     </script>
   </body>
 </html>
