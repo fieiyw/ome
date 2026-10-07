@@ -75,27 +75,34 @@
         font-weight: 700;
         font-family: 'Times New Roman', Times, serif;
         box-shadow: var(--shadow);
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       }
 
       .start-button:hover {
         background: var(--primary-dark);
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(240, 98, 146, 0.2);
+        transform: translateY(-6px) scale(1.05);
+        box-shadow: 0 12px 28px rgba(240, 98, 146, 0.25);
       }
 
       .start-button:active {
-        transform: translateY(-2px);
+        transform: translateY(-2px) scale(1.02);
       }
 
-      @keyframes slideDown {
-        from {
+      @keyframes slideDownBubble {
+        0% {
           opacity: 0;
-          transform: translateY(-20px);
+          transform: translateY(-30px) scale(0.8);
         }
-        to {
+        60% {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(8px) scale(1.05);
+        }
+        80% {
+          transform: translateY(-2px) scale(0.98);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
         }
       }
 
@@ -107,26 +114,33 @@
         margin-top: 16px;
         display: flex;
         gap: 16px;
-        animation: slideDown 0.4s ease;
+        animation: slideDownBubble 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         z-index: 10;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .menu-button {
         background: var(--panel);
         border: 2px solid var(--primary);
         color: var(--primary);
-        padding: 14px 28px;
-        font-size: 1.1rem;
+        padding: 14px 24px;
+        font-size: 1rem;
         border-radius: 10px;
         cursor: pointer;
         font-weight: 700;
         font-family: 'Times New Roman', Times, serif;
         transition: all 0.2s ease;
+        white-space: nowrap;
+        min-width: 140px;
+        text-align: center;
       }
 
       .menu-button:hover {
         background: var(--primary);
         color: white;
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 6px 16px rgba(240, 98, 146, 0.2);
       }
 
       .app-screen {
@@ -554,6 +568,17 @@
         }
       }
 
+      @media (max-width: 768px) {
+        .dropdown-menu {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .menu-button {
+          min-width: 160px;
+        }
+      }
+
       @media (max-width: 620px) {
         .form-grid {
           grid-template-columns: 1fr;
@@ -569,11 +594,16 @@
         }
 
         .welcome-title {
-          font-size: 2.5rem;
+          font-size: 2.2rem;
         }
 
         .dropdown-menu {
           flex-direction: column;
+        }
+
+        .menu-button {
+          padding: 12px 20px;
+          font-size: 0.95rem;
         }
       }
     </style>
